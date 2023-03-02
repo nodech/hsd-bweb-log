@@ -1,0 +1,28 @@
+{
+  "name": "hsd-bweb-log",
+  "version": "0.0.0",
+  "description": "Log reponse times in bweb for hsd and bcoin.",
+  "main": "lib/index.js",
+  "scripts": {
+    "build-docs": "jsdoc -c jsdoc.json",
+    "lint": "eslint lib/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodech/hsd-bweb-log.git"
+  },
+  "author": "Nodari Chkuaselidze",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nodech/hsd-bweb-log/issues"
+  },
+  "homepage": "https://github.com/nodech/hsd-bweb-log#readme",
+  "dependencies": {
+    "bfile": "^0.2.2",
+    "bsert": "^0.0.10",
+    "bval": "^0.1.6"
+  },
+  "devDependencies": {
+    "@hns-dev/bsdoc": "^1.1.1"
+  }
+}

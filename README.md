@@ -1,4 +1,4 @@
-Handshake bweb profiler
+Handshake bweb logger
 =======================
 
 Plugin for `hsd` and `bcoin` to profile `bweb` response times and log into a
