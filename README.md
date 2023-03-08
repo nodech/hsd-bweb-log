@@ -24,12 +24,12 @@ Plugin options:
   * `weblog-node` - `true` or `false` - enable webloger plugin for the Node(default: `true`)
   * `weblog-wallet` - `true` or `false` - enable webloger plugin for the Wallet(default: `true`).
   * `weblog-node-logname` - Optionally pass different name for the node http logs. (default: `node-http`)
-  * `weblog-wallet-logname` - Optionally pass different name for the wallet http logs. (default: `node-http`)
+  * `weblog-wallet-logname` - Optionally pass different name for the wallet http logs. (default: `wallet-http`)
   * `weblog-reporter-console` - `true` or `false` - enable console reporter (default: `true`)
   * `weblog-reporter-file` - `true` or `false` - enable file reporter (default: `true`)
 
 File reporter options:
-  * `weblog-file-name` - actual file name. (default: `weblog-node-logname` + `.log`)
+  * `weblog-file-name` - actual file name. (default: `weblog-node-logname` + `.log` and/or `weblog-wallet-logname` + `.log`)
   * `weblog-file-size` - Maximum size of a single log file. (default: `100` (MiB))
   * `weblog-max-files` - Maximum number of rotated files, everything else gets removed. (default: `10`)
   * `weblog-file-params` - Whether to include request parameters in the log file. (default: `true`)
@@ -67,13 +67,13 @@ Or from the debug.log file:
 
   File reporter logs information in JSON lines and supports rotation. It can also
 log everything about the request. File reporter will omit `token` and `passphrase` from the logs.  
-  Note 1: JSON entries are per line but are not separated by the commas,
+  - Note 1: JSON entries are per line but are not separated by the commas,
 if you want to use something like `jq`, you may want to assemble them.
 e.g. `(echo '['; paste -d, -s <(cat wallet-http*.log); echo ']') | jq`  
-  Note 2: Begin and Finish are not guaranteed to be in the same file.  
-  Note 3: Including Responses in the file may make some responses HUGE, like TX and Blocks
+  - Note 2: Begin and Finish are not guaranteed to be in the same file after rotation.  
+  - Note 3: Including Responses in the file may make some responses HUGE, like TX and Blocks
   that may even include full hex and whole JSON object.  
-  Note 4: If you want specific logger, might as well implement new reporter for this. E.g.
+  - Note 4: If you want specific logger, might as well implement new reporter for this. E.g.
     name related events in `name.js` reporter.
 
 Example, Log without response:
