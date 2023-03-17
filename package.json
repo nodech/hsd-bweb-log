@@ -17,10 +17,13 @@
     "url": "https://github.com/nodech/hsd-bweb-log/issues"
   },
   "homepage": "https://github.com/nodech/hsd-bweb-log#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "dependencies": {
     "bfile": "^0.2.2",
     "bsert": "^0.0.10",
-    "bval": "^0.1.6"
+    "bval": "^0.1.8"
   },
   "devDependencies": {
     "@hns-dev/bsdoc": "^1.1.1"

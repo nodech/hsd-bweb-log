@@ -12,6 +12,7 @@ of details to the logs, which can be adjusted on the fly.
 - [Reporters](#reporters)
   * [Console](#console)
   * [File](#file)
+  * [Names](#names)
 - [Running](#running)
   * [Using NPM](#using-npm)
   * [Using git or path](#using-git-or-path)
@@ -27,6 +28,7 @@ Plugin options:
   * `weblog-wallet-logname` - Optionally pass different name for the wallet http logs. (default: `wallet-http`)
   * `weblog-reporter-console` - `true` or `false` - enable console reporter (default: `true`)
   * `weblog-reporter-file` - `true` or `false` - enable file reporter (default: `true`)
+  * `weblog-reporter-names` - `true` or `false` - enable name reporter (default: `true`)
 
 File reporter options:
   * `weblog-file-name` - actual file name. (default: `weblog-node-logname` + `.log` and/or `weblog-wallet-logname` + `.log`)
@@ -34,6 +36,11 @@ File reporter options:
   * `weblog-max-files` - Maximum number of rotated files, everything else gets removed. (default: `10`)
   * `weblog-file-params` - Whether to include request parameters in the log file. (default: `true`)
   * `weblog-file-response` - Whether to include response json in the log file. (default: `false`)
+
+Name reporter options:
+  * `weblog-name-file-name` - actual file name. (default: `weblog-node-logname` + `-names.log` and/or `weblog-wallet-logname` + `.log`)
+  * `weblog-name-file-size` - Maximum size of a single log file. (default: `100` (MiB))
+  * `weblog-name-max-files` - Maximum number of rotated files, everything else gets removed. (default: `10`)
 
 Example:
   `hsd --plugins=path/to/plugin --weblog-node=false --weblog-max-files=1 --weblog-file-response=true`
@@ -171,6 +178,70 @@ Formatted:
 }
 ```
 
+### Names
+
+  Name reporter logs name operations that affect the name. It logs them similar
+to File, in JSON Lines. Check file notes above.
+
+TODO:
+  - Add support for batches
+  - Add account to the names.
+
+Example:
+Request: `bid=curl $wallet/wallet/primary/bid -X POST \
+  --data '{ "name": "handshake", "bid": 12000, "lockup": 25000 }'`
+
+```json
+{"type":"finish","timestamp":1679053480604,"date":"2023-03-17T11:44:40.604Z","response":{"start":"1117346173345","end":"1117377319705","diff":"31146360","diffStr":"31.14ms","status":200},"nameEvent":{"wallet":"primary","type":"BID","name":"xx","broadcast":true,"txHash":"4b9008b0fee8da7d471754d8cdf03e8fff6388c559d4c86791806a3e2ca81c3d","extra":{"bid":13000,"lockup":35000}}}
+{"type":"begin","timestamp":1679053480660,"date":"2023-03-17T11:44:40.660Z","request":{"start":"1117433357333"},"nameEvent":{"wallet":"primary","type":"BID","name":"xx","broadcast":true,"extra":{"bid":12000,"lockup":25000}}}
+```
+
+Formatted:
+
+```json
+{
+  "type": "finish",
+  "timestamp": 1679053480604,
+  "date": "2023-03-17T11:44:40.604Z",
+  "response": {
+    "start": "1117346173345",
+    "end": "1117377319705",
+    "diff": "31146360",
+    "diffStr": "31.14ms",
+    "status": 200
+  },
+  "nameEvent": {
+    "wallet": "primary",
+    "type": "BID",
+    "name": "handshake",
+    "broadcast": true,
+    "txHash": "4b9008b0fee8da7d471754d8cdf03e8fff6388c559d4c86791806a3e2ca81c3d",
+    "extra": {
+      "bid": 13000,
+      "lockup": 35000
+    }
+  }
+}
+{
+  "type": "begin",
+  "timestamp": 1679053480660,
+  "date": "2023-03-17T11:44:40.660Z",
+  "request": {
+    "start": "1117433357333"
+  },
+  "nameEvent": {
+    "wallet": "primary",
+    "type": "BID",
+    "name": "handshake",
+    "broadcast": true,
+    "extra": {
+      "bid": 12000,
+      "lockup": 25000
+    }
+  }
+}
+```
+
 ## Running
 ### Using NPM
 
@@ -187,4 +258,3 @@ Formatted:
   - Clone: `git clone https://github.com/nodech/hsd-weblog`
   - `cd hsd-weblog`
   - ``hsd --plugins `pwd` ``
-
