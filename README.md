@@ -38,7 +38,7 @@ File reporter options:
   * `weblog-file-response` - Whether to include response json in the log file. (default: `false`)
 
 Name reporter options:
-  * `weblog-name-file-name` - actual file name. (default: `weblog-node-logname` + `-names.log` and/or `weblog-wallet-logname` + `.log`)
+  * `weblog-name-file-name` - actual file name. (default: `weblog-wallet-logname` + `-names.log`)
   * `weblog-name-file-size` - Maximum size of a single log file. (default: `100` (MiB))
   * `weblog-name-max-files` - Maximum number of rotated files, everything else gets removed. (default: `10`)
 
@@ -188,7 +188,7 @@ TODO:
   - Add account to the names.
 
 Example:
-Request: `bid=curl $wallet/wallet/primary/bid -X POST \
+Request: `curl $wallet/wallet/primary/bid -X POST \
   --data '{ "name": "handshake", "bid": 12000, "lockup": 25000 }'`
 
 ```json
