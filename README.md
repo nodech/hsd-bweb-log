@@ -26,16 +26,25 @@ Plugin options:
   * `weblog-wallet` - `true` or `false` - enable webloger plugin for the Wallet(default: `true`).
   * `weblog-node-logname` - Optionally pass different name for the node http logs. (default: `node-http`)
   * `weblog-wallet-logname` - Optionally pass different name for the wallet http logs. (default: `wallet-http`)
+
+Available reporters:
   * `weblog-reporter-console` - `true` or `false` - enable console reporter (default: `true`)
   * `weblog-reporter-file` - `true` or `false` - enable file reporter (default: `true`)
   * `weblog-reporter-names` - `true` or `false` - enable name reporter (default: `true`)
 
-File reporter options:
-  * `weblog-file-name` - actual file name. (default: `weblog-node-logname` + `.log` and/or `weblog-wallet-logname` + `.log`)
-  * `weblog-file-size` - Maximum size of a single log file. (default: `100` (MiB))
-  * `weblog-max-files` - Maximum number of rotated files, everything else gets removed. (default: `10`)
-  * `weblog-file-params` - Whether to include request parameters in the log file. (default: `true`)
-  * `weblog-file-response` - Whether to include response json in the log file. (default: `false`)
+Node file reporter options:
+  * `weblog-node-file-name` - actual file name. (default: `wallet-node-logname` + `.log`)
+  * `weblog-node-file-size` - Maximum size of a single log file. (default: `100` (MiB))
+  * `weblog-node-max-files` - Maximum number of rotated files, everything else gets removed. (default: `10`)
+  * `weblog-node-file-params` - Whether to include request parameters in the log file. (default: `true`)
+  * `weblog-node-file-response` - Whether to include response json in the log file. (default: `false`)
+
+Wallet file reporter options:
+  * `weblog-wallet-file-name` - actual file name. (default: `weblog-wallet-logname` + `.log`)
+  * `weblog-wallet-file-size` - Maximum size of a single log file. (default: `100` (MiB))
+  * `weblog-wallet-max-files` - Maximum number of rotated files, everything else gets removed. (default: `10`)
+  * `weblog-wallet-file-params` - Whether to include request parameters in the log file. (default: `true`)
+  * `weblog-wallet-file-response` - Whether to include response json in the log file. (default: `false`)
 
 Name reporter options:
   * `weblog-name-file-name` - actual file name. (default: `weblog-wallet-logname` + `-names.log`)
