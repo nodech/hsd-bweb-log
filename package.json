@@ -1,6 +1,6 @@
 {
   "name": "hsd-bweb-log",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Log reponse times in bweb for hsd and bcoin.",
   "main": "lib/index.js",
   "scripts": {
