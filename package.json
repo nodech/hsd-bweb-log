@@ -1,6 +1,6 @@
 {
   "name": "hsd-bweb-log",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Log reponse times in bweb for hsd and bcoin.",
   "main": "lib/index.js",
   "scripts": {
@@ -21,11 +21,12 @@
     "node": ">=14.0.0"
   },
   "dependencies": {
-    "bfile": "^0.2.2",
-    "bsert": "^0.0.10",
+    "bfile": "^0.2.3",
+    "bsert": "^0.0.13",
     "bval": "^0.1.8"
   },
   "devDependencies": {
-    "@hns-dev/bsdoc": "^1.1.1"
+    "@hns-dev/bsdoc": "^1.1.5",
+    "bslintrc": "^0.0.3"
   }
 }
